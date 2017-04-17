@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const sourcePath = path.join(__dirname, './app');
-const staticsPath = path.join(__dirname, './static');
+const staticsPath = path.join(__dirname, './.tmp');
 
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
