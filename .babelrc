@@ -1,17 +1,11 @@
 {
   "plugins": [
-    "transform-class-properties"
+    "transform-class-properties",
+    "transform-runtime"
   ],
   "presets": [
     ["es2015", { "modules": false }],
     "react"
-  ],
-  "env": {
-    "development": {
-      "presets": [
-        "react-hmre"
-      ]
-    }
-  }
+  ]
 }
 
