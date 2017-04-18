@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './app');
 const staticsPath = path.join(__dirname, './.tmp');
@@ -7,6 +8,12 @@ const staticsPath = path.join(__dirname, './.tmp');
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
+
+  const extractSass = new ExtractTextPlugin({
+    filename: '[name].bundle.css',
+    disable: false,
+    allChunks: true
+  });
 
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
@@ -18,6 +25,7 @@ module.exports = function (env) {
       NODE_ENV: nodeEnv,
     }),
     new webpack.NamedModulesPlugin(),
+    extractSass
   ];
 
   if (isProd) {
@@ -54,7 +62,7 @@ module.exports = function (env) {
     devtool: isProd ? 'source-map' : 'eval',
     context: sourcePath,
     entry: {
-      js: './index.js',
+      app: './index.js',
       vendor: ['react']
     },
     output: {
@@ -74,12 +82,16 @@ module.exports = function (env) {
           },
         },
         {
-          test: /\.css$/,
+          test: /\.s?css$/,
           exclude: /node_modules/,
-          use: [
-            'style-loader',
-            'css-loader'
-          ]
+          use: extractSass.extract({
+            use: [{
+              loader: 'css-loader'
+            }, {
+              loader: 'sass-loader'
+            }],
+            fallback: 'style-loader'
+          })
         },
         {
           test: /\.(js|jsx)$/,
@@ -136,4 +148,3 @@ module.exports = function (env) {
     }
   };
 };
-

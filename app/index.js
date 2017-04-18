@@ -7,7 +7,7 @@ import About from 'about/About';
 
 import 'index.html';
 
-import './styles.css';
+import './styles.scss';
 
 ReactDOM.render((
   <Router>
