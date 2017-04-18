@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './style.css';
+import './styles.css';
 
 const Home = () => (
-  <div className="viewport">
+  <div className="viewport home">
     Hello World!
   </div>
 );
