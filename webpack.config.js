@@ -2,8 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const sourcePath = path.join(__dirname, './app');
-const staticsPath = path.join(__dirname, './.tmp');
+const sourcePath = path.join(__dirname, './client');
+const staticsPath = path.join(__dirname, './build');
 
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
@@ -62,7 +62,7 @@ module.exports = function (env) {
     devtool: isProd ? 'source-map' : 'eval',
     context: sourcePath,
     entry: {
-      app: './index.js',
+      client: './index.js',
       vendor: ['react']
     },
     output: {
@@ -125,7 +125,7 @@ module.exports = function (env) {
     },
 
     devServer: {
-      contentBase: './app',
+      contentBase: './client',
       historyApiFallback: true,
       port: 3000,
       compress: isProd,
