@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "./node_modules/.bin/rimraf build",
     "dev": "webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
     "build:bundle": "cross-env NODE_ENV=production webpack --env.prod=true",
     "build:langs": "./node_modules/.bin/babel-node scripts/translate.js",
-    "build": "npm run build:bundle && npm run build:langs",
+    "build": "npm run clean && npm run build:bundle && npm run build:langs",
     "lint": "eslint ./app ./webpack.config.js -f table || true"
   },
   "repository": {
@@ -53,6 +54,7 @@
     "glob": "^7.1.1",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.5.2",
+    "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",

@@ -50,6 +50,7 @@ module.exports = function (env) {
         output: {
           comments: false,
         },
+        sourceMap: true,
       })
     );
   } else {
@@ -59,7 +60,7 @@ module.exports = function (env) {
   }
 
   return {
-    devtool: isProd ? 'source-map' : 'eval',
+    devtool: isProd ? 'source-map' : 'inline-source-map',
     context: sourcePath,
     entry: {
       client: './index.js',
