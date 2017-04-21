@@ -1,0 +1,9 @@
+.todo-item {
+  list-style: none;
+
+  &.completed {
+    span {
+      text-decoration: line-through;
+    }
+  }
+}

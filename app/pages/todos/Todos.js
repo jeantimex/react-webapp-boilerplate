@@ -1,32 +1,66 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import {
   addTodoItemAction,
+  toggleTodoItemAction,
 } from 'actions';
+
+import './todos.scss';
 
 class Todos extends Component {
 
-  handleAddTodo = () => {
+  handleKeyPress = (e) => {
     const { addTodoItem } = this.props;
-    addTodoItem('Hello World!');
+    const input = e.target;
+    const text = input.value;
+
+    if (e.key === 'Enter' && text && text.length > 0) {
+      addTodoItem(text);
+      // Clear the text field
+      input.value = '';
+    }
+  };
+
+  handleChange = (e) => {
+    const { toggleTodoItem } = this.props;
+    const input = e.target;
+
+    toggleTodoItem(input.id);
   };
 
   render() {
-    const { todoItems } = this.props;
-    const items = todoItems.map(item =>
-      <li key={item.id}>
-        {item.text}
-      </li>
-    );
+    const { filterTodoItems } = this.props;
+    const items = filterTodoItems().map((item) => {
+      const className = classNames('todo-item', {
+        completed: item.completed
+      });
+
+      return (
+        <li
+          key={item.id}
+          className={className}
+        >
+          <div>
+            <input
+              type="checkbox"
+              id={item.id}
+              onChange={this.handleChange}
+            />
+            <span>{item.text}</span>
+          </div>
+        </li>
+      );
+    });
 
     return (
       <div className="viewport">
-        <button onClick={this.handleAddTodo}>
-          Add
-        </button>
-        <ul>
+        <div>
+          <input type="text" onKeyPress={this.handleKeyPress} />
+        </div>
+        <ul className="todo-list">
           {items}
         </ul>
       </div>
@@ -36,26 +70,27 @@ class Todos extends Component {
 }
 
 Todos.defaultProps = {
-  todoItems: [],
-  addTodoItem: () => {}
+  filterTodoItems: () => [],
+  addTodoItem: () => {},
+  toggleTodoItem: () => {},
 };
 
 Todos.propTypes = {
-  todoItems: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string,
-    completed: PropTypes.bool
-  })),
-  addTodoItem: PropTypes.func
+  filterTodoItems: PropTypes.func,
+  addTodoItem: PropTypes.func,
+  toggleTodoItem: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  todoItems: state.todo.items,
+  filterTodoItems: () => state.todo.items.toArray(),
 });
 
 const mapDispatchToProps = dispatch => ({
-  addTodo: (text) => {
+  addTodoItem: (text) => {
     dispatch(addTodoItemAction(text));
+  },
+  toggleTodoItem: (id) => {
+    dispatch(toggleTodoItemAction(id));
   }
 });
 
