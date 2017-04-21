@@ -55,7 +55,7 @@ const todoReducer = (state = defaultState, action = {}) => {
       return {
         ...state,
         filterType,
-      }
+      };
     }
     default:
       return state;
