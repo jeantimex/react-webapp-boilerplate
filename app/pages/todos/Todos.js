@@ -153,7 +153,7 @@ const mapStateToProps = (state) => {
   return {
     todoItems,
     activeItemsCount: items.toArray().filter(item => !item.completed).length,
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
