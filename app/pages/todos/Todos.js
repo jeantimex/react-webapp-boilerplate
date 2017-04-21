@@ -58,6 +58,7 @@ class Todos extends Component {
             />
             <span>{item.text}</span>
             <button
+              className="close-button"
               onClick={() => this.handleClose(item.id)}
             >
               ×

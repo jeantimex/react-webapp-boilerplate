@@ -6,4 +6,14 @@
       text-decoration: line-through;
     }
   }
+
+  &:hover {
+    .close-button {
+      display: inline-block;
+    }
+  }
+
+  .close-button {
+    display: none;
+  }
 }
