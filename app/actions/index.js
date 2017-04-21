@@ -1,7 +1,7 @@
 export const ADD_TODO_ITEM = 'ADD_TODO_ITEM';
 export const TOGGLE_TODO_ITEM = 'TOGGLE_TODO_ITEM';
 export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
-export const COUNT_TODO_ITEMS = 'COUNT_TODO_ITEMS';
+export const SET_TODO_FILTER_TYPE = 'SET_TODO_FILTER_TYPE';
 
 export const addTodoItemAction = text => ({
   type: ADD_TODO_ITEM,
@@ -24,9 +24,9 @@ export const deleteTodoItemAction = id => ({
   },
 });
 
-export const countTodoItemsAction = todoItems => ({
-  type: COUNT_TODO_ITEMS,
+export const setTodoFilterTypeAction = filterType => ({
+  type: SET_TODO_FILTER_TYPE,
   payload: {
-    todoItems,
+    filterType,
   },
 });

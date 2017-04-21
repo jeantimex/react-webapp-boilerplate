@@ -7,6 +7,7 @@ import {
   addTodoItemAction,
   toggleTodoItemAction,
   deleteTodoItemAction,
+  setTodoFilterTypeAction,
 } from 'actions';
 
 import './todos.scss';
@@ -38,9 +39,19 @@ class Todos extends Component {
     deleteTodoItem(id);
   };
 
+  handleFilterTypeChange = (filterType) => {
+    const { setTodoFilterType } = this.props;
+
+    setTodoFilterType(filterType);
+  }
+
   render() {
-    const { filterTodoItems } = this.props;
-    const items = filterTodoItems().map((item) => {
+    const {
+      todoItems,
+      activeItemsCount,
+    } = this.props;
+
+    const items = todoItems.map((item) => {
       const className = classNames('todo-item', {
         completed: item.completed
       });
@@ -54,6 +65,7 @@ class Todos extends Component {
             <input
               type="checkbox"
               id={item.id}
+              checked={item.completed}
               onChange={this.handleChange}
             />
             <span>{item.text}</span>
@@ -71,11 +83,35 @@ class Todos extends Component {
     return (
       <div className="viewport">
         <div>
-          <input type="text" onKeyPress={this.handleKeyPress} />
+          <input
+            type="text"
+            onKeyPress={this.handleKeyPress}
+            placeholder="What needs to be done?"
+          />
         </div>
         <ul className="todo-list">
           {items}
         </ul>
+        <div>
+          { activeItemsCount } items left
+        </div>
+        <div>
+          <button
+            onClick={() => this.handleFilterTypeChange('all')}
+          >
+            All
+          </button>
+          <button
+            onClick={() => this.handleFilterTypeChange('active')}
+          >
+            Active
+          </button>
+          <button
+            onClick={() => this.handleFilterTypeChange('completed')}
+          >
+            Completed
+          </button>
+        </div>
       </div>
     );
   }
@@ -83,22 +119,42 @@ class Todos extends Component {
 }
 
 Todos.defaultProps = {
-  filterTodoItems: () => [],
+  todoItems: [],
   addTodoItem: () => {},
   toggleTodoItem: () => {},
   deleteTodoItem: () => {},
+  setTodoFilterType: () => {},
+  activeItemsCount: 0,
 };
 
 Todos.propTypes = {
-  filterTodoItems: PropTypes.func,
+  todoItems: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    text: PropTypes.string,
+    completed: PropTypes.bool,
+  })),
   addTodoItem: PropTypes.func,
   toggleTodoItem: PropTypes.func,
   deleteTodoItem: PropTypes.func,
+  setTodoFilterType: PropTypes.func,
+  activeItemsCount: PropTypes.number,
 };
 
-const mapStateToProps = state => ({
-  filterTodoItems: () => state.todo.items.toArray(),
-});
+const mapStateToProps = (state) => {
+  const { items, filterType } = state.todo;
+  let todoItems = items.toArray();
+
+  if (filterType === 'active') {
+    todoItems = todoItems.filter(item => !item.completed);
+  } else if (filterType === 'completed') {
+    todoItems = todoItems.filter(item => item.completed);
+  }
+
+  return {
+    todoItems,
+    activeItemsCount: items.toArray().filter(item => !item.completed).length,
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   addTodoItem: (text) => {
@@ -109,6 +165,9 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteTodoItem: (id) => {
     dispatch(deleteTodoItemAction(id));
+  },
+  setTodoFilterType: (filterType) => {
+    dispatch(setTodoFilterTypeAction(filterType));
   },
 });
 

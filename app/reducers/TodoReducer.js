@@ -4,12 +4,13 @@ import uuid from 'uuid/v4';
 import {
   ADD_TODO_ITEM,
   DELETE_TODO_ITEM,
-  COUNT_TODO_ITEMS,
   TOGGLE_TODO_ITEM,
+  SET_TODO_FILTER_TYPE,
 } from 'actions';
 
 const defaultState = {
   items: OrderedMap(),
+  filterType: 'all',
 };
 
 const todoReducer = (state = defaultState, action = {}) => {
@@ -48,8 +49,14 @@ const todoReducer = (state = defaultState, action = {}) => {
         items,
       };
     }
-    case COUNT_TODO_ITEMS:
-      return state;
+    case SET_TODO_FILTER_TYPE: {
+      const { filterType } = action.payload;
+
+      return {
+        ...state,
+        filterType,
+      }
+    }
     default:
       return state;
   }
