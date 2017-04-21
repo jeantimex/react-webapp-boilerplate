@@ -1,0 +1,19 @@
+.todo-item {
+  list-style: none;
+
+  &.completed {
+    span {
+      text-decoration: line-through;
+    }
+  }
+
+  &:hover {
+    .close-button {
+      display: inline-block;
+    }
+  }
+
+  .close-button {
+    display: none;
+  }
+}
