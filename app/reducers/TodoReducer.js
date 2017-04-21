@@ -39,8 +39,15 @@ const todoReducer = (state = defaultState, action = {}) => {
         items,
       };
     }
-    case DELETE_TODO_ITEM:
-      return state;
+    case DELETE_TODO_ITEM: {
+      const { id } = action.payload;
+      const items = state.items.delete(id);
+
+      return {
+        ...state,
+        items,
+      };
+    }
     case COUNT_TODO_ITEMS:
       return state;
     default:

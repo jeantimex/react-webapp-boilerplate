@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import {
   addTodoItemAction,
   toggleTodoItemAction,
+  deleteTodoItemAction,
 } from 'actions';
 
 import './todos.scss';
@@ -31,6 +32,12 @@ class Todos extends Component {
     toggleTodoItem(input.id);
   };
 
+  handleClose = (id) => {
+    const { deleteTodoItem } = this.props;
+
+    deleteTodoItem(id);
+  };
+
   render() {
     const { filterTodoItems } = this.props;
     const items = filterTodoItems().map((item) => {
@@ -50,6 +57,11 @@ class Todos extends Component {
               onChange={this.handleChange}
             />
             <span>{item.text}</span>
+            <button
+              onClick={() => this.handleClose(item.id)}
+            >
+              ×
+            </button>
           </div>
         </li>
       );
@@ -73,12 +85,14 @@ Todos.defaultProps = {
   filterTodoItems: () => [],
   addTodoItem: () => {},
   toggleTodoItem: () => {},
+  deleteTodoItem: () => {},
 };
 
 Todos.propTypes = {
   filterTodoItems: PropTypes.func,
   addTodoItem: PropTypes.func,
-  toggleTodoItem: PropTypes.func
+  toggleTodoItem: PropTypes.func,
+  deleteTodoItem: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -91,7 +105,10 @@ const mapDispatchToProps = dispatch => ({
   },
   toggleTodoItem: (id) => {
     dispatch(toggleTodoItemAction(id));
-  }
+  },
+  deleteTodoItem: (id) => {
+    dispatch(deleteTodoItemAction(id));
+  },
 });
 
 export default connect(
