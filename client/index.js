@@ -17,7 +17,6 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import localeData from 'locale-data';
 import messages from 'locale-messages';
 
-import './index.html';
 import './styles.scss';
 
 const history = createHistory();
