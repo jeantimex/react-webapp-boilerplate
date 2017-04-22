@@ -2,29 +2,34 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const sourcePath = path.join(__dirname, './app');
-const staticsPath = path.join(__dirname, './.tmp');
+const locale = process.env.LOCALE || 'en-US';
+const sourcePath = path.join(__dirname, 'client');
+const staticsPath = path.join(__dirname, 'build', locale);
 
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
+  const languageCode = locale.toLowerCase().split(/[_-]+/)[0];
 
   const extractSass = new ExtractTextPlugin({
     filename: '[name].bundle.css',
     disable: false,
-    allChunks: true
+    allChunks: true,
   });
 
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.bundle.js'
+      filename: 'vendor.bundle.js',
     }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: nodeEnv,
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      LOCALE: locale,
+    }),
     extractSass
   ];
 
@@ -32,7 +37,7 @@ module.exports = function (env) {
     plugins.push(
       new webpack.LoaderOptionsPlugin({
         minimize: true,
-        debug: false
+        debug: false,
       }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -50,6 +55,7 @@ module.exports = function (env) {
         output: {
           comments: false,
         },
+        sourceMap: true,
       })
     );
   } else {
@@ -59,10 +65,10 @@ module.exports = function (env) {
   }
 
   return {
-    devtool: isProd ? 'source-map' : 'eval',
+    devtool: isProd ? 'source-map' : 'inline-source-map',
     context: sourcePath,
     entry: {
-      app: './index.js',
+      client: './index.js',
       vendor: ['react']
     },
     output: {
@@ -107,7 +113,11 @@ module.exports = function (env) {
       modules: [
         path.resolve(__dirname, 'node_modules'),
         sourcePath
-      ]
+      ],
+      alias: {
+        'locale-data': `react-intl/locale-data/${languageCode}`,
+        'locale-messages': `./../locales/${locale}.json`,
+      },
     },
 
     plugins,
@@ -125,7 +135,7 @@ module.exports = function (env) {
     },
 
     devServer: {
-      contentBase: './app',
+      contentBase: './client',
       historyApiFallback: true,
       port: 3000,
       compress: isProd,

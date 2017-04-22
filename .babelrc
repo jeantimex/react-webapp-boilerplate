@@ -1,10 +1,16 @@
 {
   "plugins": [
     "transform-class-properties",
-    "transform-runtime"
+    "transform-runtime",
+    ["react-intl", {
+      "messagesDir": "./.tmp/messages/"
+    }]
   ],
   "presets": [
-    ["es2015", { "modules": false }],
+    "latest",
+    ["es2015", {
+      "modules": false
+    }],
     "react",
     "stage-0"
   ]
