@@ -14,16 +14,15 @@ import store from 'store';
 
 // React Intl
 import { IntlProvider, addLocaleData } from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import zh from 'react-intl/locale-data/zh';
-import messages from './../locales/zh-CN.json';
+import localeData from 'locale-data';
+import messages from 'locale-messages';
 
 import './index.html';
 import './styles.scss';
 
 const history = createHistory();
 
-addLocaleData([...en, ...zh]);
+addLocaleData(localeData);
 
 ReactDOM.render(
   <IntlProvider locale={'en'} messages={messages}>

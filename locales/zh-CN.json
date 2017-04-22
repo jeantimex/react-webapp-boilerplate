@@ -1,3 +1,4 @@
 {
-  "helloWorld": "世界您好"
+  "helloWorld": "您好世界",
+  "welcome": "Hello {name}, you have {unreadCount, number} {unreadCount, plural, one {message} other {messages}}"
 }
