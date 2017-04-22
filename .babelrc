@@ -3,7 +3,7 @@
     "transform-class-properties",
     "transform-runtime",
     ["react-intl", {
-      "messagesDir": "./build/messages/"
+      "messagesDir": "./.tmp/messages/"
     }]
   ],
   "presets": [
