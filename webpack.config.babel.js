@@ -1,12 +1,12 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import webpack from 'webpack';
+import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const locale = process.env.LOCALE || 'en-US';
 const sourcePath = path.join(__dirname, 'client');
 const outputPath = path.join(__dirname, 'dist', locale);
 
-module.exports = function (env) {
+export default function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
   const languageCode = locale.toLowerCase().split(/[_-]+/)[0];
@@ -157,4 +157,4 @@ module.exports = function (env) {
       },
     }
   };
-};
+}
