@@ -18,6 +18,7 @@ ecmaFeatures:
 
 env:
   browser: true
+  mocha: true
 
 rules:
   indent: 2

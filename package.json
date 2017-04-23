@@ -4,7 +4,6 @@
   "description": "A sample project that demonstrates how to scaffold a web application using React and Webpack.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist",
     "dev": "webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
@@ -12,7 +11,8 @@
     "build:langs": "babel-node ./scripts/translate.js",
     "build": "npm run clean && npm run build:bundle && npm run build:langs",
     "release": "npm run clean && babel-node ./scripts/release.js",
-    "lint": "eslint ./app ./webpack.config.js -f table || true"
+    "lint": "eslint ./app ./webpack.config.js",
+    "test": "npm run lint && karma start"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,8 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
     "eslint": "^3.19.0",
@@ -53,8 +55,16 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "glob": "^7.1.1",
+    "karma": "^1.6.0",
+    "karma-cli": "^1.0.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
     "mkdirp": "^0.5.1",
+    "mocha": "^3.2.0",
     "node-sass": "^4.5.2",
+    "phantomjs-polyfill-object-assign": "0.0.2",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
