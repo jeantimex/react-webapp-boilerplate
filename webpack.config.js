@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const locale = process.env.LOCALE || 'en-US';
 const sourcePath = path.join(__dirname, 'client');
-const staticsPath = path.join(__dirname, 'build', locale);
+const outputPath = path.join(__dirname, 'dist', locale);
 
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development';
@@ -72,7 +72,7 @@ module.exports = function (env) {
       vendor: ['react']
     },
     output: {
-      path: staticsPath,
+      path: outputPath,
       filename: '[name].bundle.js',
     },
     module: {
@@ -116,7 +116,7 @@ module.exports = function (env) {
       ],
       alias: {
         'locale-data': `react-intl/locale-data/${languageCode}`,
-        'locale-messages': `./../locales/${locale}.json`,
+        'locale-messages': `./locales/${locale}.json`,
       },
     },
 

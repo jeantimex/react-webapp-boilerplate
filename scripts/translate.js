@@ -4,7 +4,7 @@ import { sync as globSync } from 'glob';
 import { sync as mkdirpSync } from 'mkdirp';
 
 const messagesPattern = './.tmp/messages/**/*.json';
-const outputDir = './locales/';
+const outputDir = './client/locales/';
 
 // Aggregates the default messages that were extracted from the example app's
 // React components via the React Intl Babel plugin. An error will be thrown if

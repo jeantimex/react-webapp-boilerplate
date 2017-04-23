@@ -7,7 +7,7 @@ const async = require('async');
 const join = path.join;
 const extname = path.extname;
 
-const localesPath = join(__dirname, '..', 'locales');
+const localesPath = join(__dirname, '..', 'client', 'locales');
 
 const languages = readdirSync(localesPath)
     .filter(fileName => extname(fileName) === '.json')
