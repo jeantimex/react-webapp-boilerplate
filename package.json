@@ -11,7 +11,7 @@
     "build:langs": "babel-node ./scripts/translate.js",
     "build": "npm run clean && npm run build:bundle && npm run build:langs",
     "release": "npm run clean && babel-node ./scripts/release.js",
-    "lint": "eslint ./app ./webpack.config.js",
+    "lint": "eslint ./client ./scripts ./webpack.config.js ./karma.conf.js",
     "test": "npm run lint && karma start"
   },
   "repository": {
@@ -46,6 +46,7 @@
     "chai": "^3.5.0",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-import-resolver-webpack": "^0.8.1",
@@ -65,6 +66,8 @@
     "mocha": "^3.2.0",
     "node-sass": "^4.5.2",
     "phantomjs-polyfill-object-assign": "0.0.2",
+    "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",

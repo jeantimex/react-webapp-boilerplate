@@ -26,7 +26,16 @@ module.exports = (config) => {
           test: /\.jsx?$/,
           loader: 'babel-loader',
           exclude: /node_modules/
+        }, {
+          test: /\.s?css$/,
+          loaders: ['style-loader', 'css-loader', 'sass-loader'],
+          exclude: /node_modules/
         }]
+      },
+      externals: {
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
       }
     },
 
