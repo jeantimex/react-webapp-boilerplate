@@ -1,12 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { assert } from 'chai';
+import { shallowWithIntl } from 'enzyme-intl';
 
 import Home from '../Home';
 
 describe('Home Page', () => {
   it('should render the home page', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithIntl(
       <Home />
     );
     assert.ok(wrapper.hasClass('viewport'));
