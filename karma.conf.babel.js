@@ -1,9 +1,10 @@
-var path = require('path');
+import path from 'path';
 
-module.exports = (config) => {
+export default (config) => {
   config.set({
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values:
+    // config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
     // enable / disable colors in the output (reporters and logs)

@@ -19,25 +19,19 @@ const { intl } = intlProvider.getChildContext();
 /**
  * When using React-Intl `injectIntl` on components, props.intl is required.
  */
-function nodeWithIntlProp(node) {
-    return React.cloneElement(node, { intl });
-}
+const nodeWithIntlProp = node => React.cloneElement(node, { intl });
 
-export function shallowWithIntl(node, { context } = {}) {
-    return shallow(
-        nodeWithIntlProp(node),
-        {
-            context: Object.assign({}, context, {intl}),
-        }
-    );
-}
+export const shallowWithIntl = (node, { context } = {}) => shallow(
+  nodeWithIntlProp(node),
+  {
+    context: Object.assign({}, context, { intl }),
+  }
+);
 
-export function mountWithIntl(node, { context, childContextTypes } = {}) {
-    return mount(
-        nodeWithIntlProp(node),
-        {
-            context: Object.assign({}, context, {intl}),
-            childContextTypes: Object.assign({}, { intl: intlShape }, childContextTypes)
-        }
-    );
-}
+export const mountWithIntl = (node, { context, childContextTypes } = {}) => mount(
+  nodeWithIntlProp(node),
+  {
+    context: Object.assign({}, context, { intl }),
+    childContextTypes: Object.assign({}, { intl: intlShape }, childContextTypes)
+  }
+);

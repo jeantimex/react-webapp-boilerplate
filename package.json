@@ -11,8 +11,9 @@
     "build:langs": "babel-node ./scripts/translate.js",
     "build": "npm run clean && npm run build:bundle && npm run build:langs",
     "release": "npm run clean && babel-node ./scripts/release.js",
-    "lint": "eslint ./client ./scripts ./webpack.config.js",
-    "test": "npm run lint && karma start"
+    "lint": "eslint ./client ./scripts ./webpack.config.babel.js ./karma.conf.babel.js",
+    "karma": "cross-env NODE_ENV=test babel-node -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
+    "test": "npm run lint && npm run karma"
   },
   "repository": {
     "type": "git",

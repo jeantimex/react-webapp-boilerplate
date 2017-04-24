@@ -22,6 +22,7 @@ env:
 
 rules:
   indent: 2
+  max-len: [1, 120]
   func-style: 0
   func-names: 0
   comma-dangle: 0

@@ -6,7 +6,7 @@ const locale = process.env.LOCALE || 'en-US';
 const sourcePath = path.join(__dirname, 'client');
 const outputPath = path.join(__dirname, 'dist', locale);
 
-export default function (env) {
+export default (env) => {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
   const languageCode = locale.toLowerCase().split(/[_-]+/)[0];
@@ -157,4 +157,4 @@ export default function (env) {
       },
     }
   };
-}
+};
