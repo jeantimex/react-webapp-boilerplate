@@ -38,7 +38,8 @@ export default (config) => {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
-      'karma-mocha-reporter'
+      'karma-mocha-reporter',
+      'karma-coverage-istanbul-reporter'
     ],
 
     // frameworks to use
@@ -57,7 +58,7 @@ export default (config) => {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha', 'coverage-istanbul'],
 
     coverageIstanbulReporter: {
       reports: ['text-summary'],
@@ -75,6 +76,11 @@ export default (config) => {
           test: /\.s?css$/,
           loaders: ['style-loader', 'css-loader', 'sass-loader'],
           exclude: /node_modules/
+        }, {
+          test: /\.js$/,
+          exclude: /(tests|node_modules)/,
+          loader: 'istanbul-instrumenter-loader',
+          enforce: 'post',
         }]
       },
       externals: {
