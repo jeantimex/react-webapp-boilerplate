@@ -115,8 +115,12 @@ export default (env) => {
         sourcePath
       ],
       alias: {
+        actions: path.join(__dirname, 'client', 'actions'),
+        pages: path.join(__dirname, 'client', 'pages'),
+        reducers: path.join(__dirname, 'client', 'reducers'),
+        store: path.join(__dirname, 'client', 'store'),
         'locale-data': `react-intl/locale-data/${languageCode}`,
-        'locale-messages': `./locales/${locale}.json`,
+        'locale-messages': `./locales/${locale}.json`
       },
     },
 

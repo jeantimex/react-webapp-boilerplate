@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
-import About from '../About';
+import About from 'pages/about/About';
 
 describe('About Page', () => {
   it('should render the about page', () => {

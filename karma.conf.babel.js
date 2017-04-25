@@ -1,11 +1,12 @@
 import path from 'path';
+import webpack from 'webpack';
 
 export default (config) => {
   config.set({
     // level of logging
     // possible values:
     // config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -29,17 +30,28 @@ export default (config) => {
       captureConsole: true
     },
 
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-chai',
+      'karma-intl-shim',
+      'karma-mocha',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+      'karma-coverage',
+      'karma-mocha-reporter'
+    ],
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'intl-shim'],
 
     files: [
       './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
-      './scripts/tests.bundle.js'
+      './tests/index.js'
     ],
 
     preprocessors: {
-      './scripts/tests.bundle.js': ['webpack', 'sourcemap']
+      './tests/index.js': ['webpack', 'sourcemap']
     },
 
     // test results reporter to use
@@ -47,11 +59,16 @@ export default (config) => {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
+    coverageIstanbulReporter: {
+      reports: ['text-summary'],
+      fixWebpackSourcePaths: true
+    },
+
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        loaders: [{
-          test: /\.jsx?$/,
+        rules: [{
+          test: /\.js$/,
           loader: 'babel-loader',
           exclude: /node_modules/
         }, {
@@ -67,9 +84,20 @@ export default (config) => {
       },
       resolve: {
         alias: {
-          'enzyme-intl$': path.resolve(__dirname, 'scripts/enzyme-intl.js')
+          actions: path.join(__dirname, 'client', 'actions'),
+          pages: path.join(__dirname, 'client', 'pages'),
+          reducers: path.join(__dirname, 'client', 'reducers'),
+          store: path.join(__dirname, 'client', 'store'),
+          'enzyme-intl$': path.resolve('scripts/enzyme-intl.js'),
+          'locale-data': 'react-intl/locale-data/en',
+          'locale-messages': './locales/en-US.json',
         }
-      }
+      },
+      plugins: [
+        new webpack.EnvironmentPlugin({
+          NODE_ENV: 'test',
+        })
+      ]
     },
 
     webpackServer: {

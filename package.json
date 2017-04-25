@@ -12,7 +12,7 @@
     "build": "npm run clean && npm run build:bundle && npm run build:langs",
     "release": "npm run clean && babel-node ./scripts/release.js",
     "lint": "eslint ./client ./scripts ./webpack.config.babel.js ./karma.conf.babel.js",
-    "karma": "cross-env NODE_ENV=test babel-node -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
+    "karma": "babel-node -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
     "test": "npm run lint && npm run karma"
   },
   "repository": {
@@ -57,10 +57,14 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "glob": "^7.1.1",
+    "istanbul-instrumenter-loader": "^2.0.0",
     "karma": "^1.6.0",
+    "karma-chai": "^0.1.0",
     "karma-cli": "^1.0.1",
+    "karma-coverage": "^1.1.1",
     "karma-intl-shim": "^1.0.3",
     "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
