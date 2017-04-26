@@ -11,5 +11,7 @@ describe('Home Page', () => {
     );
     assert.ok(wrapper.hasClass('viewport'));
     assert.ok(wrapper.hasClass('home'));
+    assert.equal(wrapper.state('name'), 'Su');
+    assert.equal(wrapper.state('unreadCount'), 1000);
   });
 });

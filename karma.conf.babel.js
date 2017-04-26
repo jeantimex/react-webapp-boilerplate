@@ -35,6 +35,7 @@ export default (config) => {
       'karma-chai',
       'karma-intl-shim',
       'karma-mocha',
+      'karma-sinon',
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
@@ -44,7 +45,7 @@ export default (config) => {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'intl-shim'],
+    frameworks: ['mocha', 'intl-shim', 'sinon'],
 
     files: [
       './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
@@ -75,10 +76,10 @@ export default (config) => {
       },
       thresholds: {
         global: {
-          statements: 90,
-          lines: 90,
-          branches: 90,
-          functions: 90
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
         }
       }
     },

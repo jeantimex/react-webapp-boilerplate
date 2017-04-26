@@ -8,7 +8,7 @@ import {
   SET_TODO_FILTER_TYPE,
 } from 'actions';
 
-const defaultState = {
+export const defaultState = {
   items: OrderedMap(),
   filterType: 'all',
 };
