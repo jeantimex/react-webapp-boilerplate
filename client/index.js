@@ -20,24 +20,21 @@ import About from 'pages/about/About';
 
 import './styles.scss';
 
-if (process.env.NODE_ENV !== 'test') {
-  const history = createHistory();
+const history = createHistory();
 
-  addLocaleData(localeData);
+addLocaleData(localeData);
 
-  ReactDOM.render(
-    <IntlProvider locale={'en'} messages={messages}>
-      <Provider store={store}>
-        { /* ConnectedRouter will use the store from Provider automatically */ }
-        <ConnectedRouter history={history}>
-          <div>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/todos" component={Todos} />
-            <Route exact path="/about" component={About} />
-          </div>
-        </ConnectedRouter>
-      </Provider>
-    </IntlProvider>,
-    document.getElementById('root')
-  );
-}
+ReactDOM.render(
+  <IntlProvider locale={'en'} messages={messages}>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/todos" component={Todos} />
+          <Route exact path="/about" component={About} />
+        </div>
+      </ConnectedRouter>
+    </Provider>
+  </IntlProvider>,
+  document.getElementById('root')
+);

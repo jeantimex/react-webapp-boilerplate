@@ -6,7 +6,7 @@ export default (config) => {
     // level of logging
     // possible values:
     // config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -61,8 +61,26 @@ export default (config) => {
     reporters: ['mocha', 'coverage-istanbul'],
 
     coverageIstanbulReporter: {
-      reports: ['text-summary'],
-      fixWebpackSourcePaths: true
+      reports: ['html', 'lcovonly', 'text-summary'],
+      // base output directory.
+      dir: path.join(__dirname, 'coverage'),
+      // if using webpack and pre-loaders, work around webpack breaking the source path
+      fixWebpackSourcePaths: true,
+      // stop istanbul outputting messages like `File [${filename}] ignored, nothing could be mapped`
+      skipFilesWithNoCoverage: true,
+      'report-config': {
+        html: {
+          subdir: 'html'
+        }
+      },
+      thresholds: {
+        global: {
+          statements: 90,
+          lines: 90,
+          branches: 90,
+          functions: 90
+        }
+      }
     },
 
     webpack: {
@@ -78,7 +96,7 @@ export default (config) => {
           exclude: /node_modules/
         }, {
           test: /\.js$/,
-          exclude: /(tests|node_modules)/,
+          exclude: /(tests|scripts|node_modules)/,
           loader: 'istanbul-instrumenter-loader',
           enforce: 'post',
         }]
