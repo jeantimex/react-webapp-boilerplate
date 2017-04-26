@@ -8,10 +8,15 @@
   ],
   "presets": [
     "latest",
-    ["es2015", {
-      "modules": false
-    }],
+    ["es2015", {"modules": false}],
     "react",
     "stage-0"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "rewire"
+      ]
+    }
+  }
 }

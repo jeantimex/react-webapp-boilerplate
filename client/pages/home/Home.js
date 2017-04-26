@@ -4,9 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import './styles.scss';
 
 class Home extends Component {
-
   constructor(props) {
     super(props);
+
     this.state = {
       name: 'Su',
       unreadCount: 1000,

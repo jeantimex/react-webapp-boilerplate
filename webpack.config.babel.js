@@ -6,7 +6,7 @@ const locale = process.env.LOCALE || 'en-US';
 const sourcePath = path.join(__dirname, 'client');
 const outputPath = path.join(__dirname, 'dist', locale);
 
-export default function (env) {
+export default (env) => {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
   const languageCode = locale.toLowerCase().split(/[_-]+/)[0];
@@ -115,8 +115,12 @@ export default function (env) {
         sourcePath
       ],
       alias: {
+        actions: path.join(__dirname, 'client', 'actions'),
+        pages: path.join(__dirname, 'client', 'pages'),
+        reducers: path.join(__dirname, 'client', 'reducers'),
+        store: path.join(__dirname, 'client', 'store'),
         'locale-data': `react-intl/locale-data/${languageCode}`,
-        'locale-messages': `./locales/${locale}.json`,
+        'locale-messages': `./locales/${locale}.json`
       },
     },
 
@@ -157,4 +161,4 @@ export default function (env) {
       },
     }
   };
-}
+};
