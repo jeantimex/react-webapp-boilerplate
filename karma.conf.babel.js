@@ -62,7 +62,7 @@ export default (config) => {
     reporters: ['mocha', 'coverage-istanbul'],
 
     coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly', 'text-summary'],
+      reports: ['html', 'lcovonly', 'text'],
       // base output directory.
       dir: path.join(__dirname, 'coverage'),
       // if using webpack and pre-loaders, work around webpack breaking the source path
