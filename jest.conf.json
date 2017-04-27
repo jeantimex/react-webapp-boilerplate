@@ -1,0 +1,23 @@
+{
+  "moduleNameMapper": {
+    "^actions(.*)$": "<rootDir>/app/actions$1",
+    "^pages(.*)$": "<rootDir>/app/pages$1",
+    "^reducers(.*)$": "<rootDir>/app/reducers$1",
+    "store": "<rootDir>/app/store",
+    "enzyme-intl": "<rootDir>/scripts/enzyme-intl.js",
+    "locale-data": "<rootDir>/node_modules/react-intl/locale-data/en",
+    "locale-messages": "<rootDir>/app/locales/en-US.json",
+    "\\.(css|scss)$": "identity-obj-proxy"
+  },
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/scripts"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 90,
+      "functions": 90,
+      "lines": 90,
+      "statements": 90
+    }
+  }
+}

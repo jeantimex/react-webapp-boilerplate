@@ -5,7 +5,6 @@ import './styles.scss';
 
 class Home extends Component {
 
-  /* istanbul ignore next */
   constructor(props) {
     super(props);
 
