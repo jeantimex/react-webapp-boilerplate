@@ -132,12 +132,6 @@ export default (env) => {
       hints: 'warning',
     },
 
-    stats: {
-      colors: {
-        green: '\u001b[32m',
-      }
-    },
-
     devServer: {
       contentBase: './app',
       historyApiFallback: true,
@@ -155,9 +149,6 @@ export default (env) => {
         timings: true,
         version: false,
         warnings: true,
-        colors: {
-          green: '\u001b[32m',
-        }
       },
     }
   };
