@@ -1,26 +1,20 @@
-import { assert } from 'chai';
-import reducer, {
-  defaultState,
-  __Rewire__,
-  __ResetDependency__,
-} from 'reducers/TodoReducer';
+jest.mock('uuid/v4');
 
-const sandbox = sinon.sandbox.create();
+import uuid from 'uuid/v4';
+import { assert } from 'chai';
+import reducer, { defaultState } from 'reducers/TodoReducer';
+
+uuid.mockImplementation(() => '123-456');
 
 describe('todo reducer', () => {
-  beforeEach(() => {
-    const uuid = sandbox.stub().returns('123-456');
-    reducer.__Rewire__('uuid', uuid);
-  });
-
-  afterEach(() => {
-    reducer.__ResetDependency__('uuid');
-    sandbox.verifyAndRestore();
-  });
-
   it('should default to the default state when initially called', () => {
     const state = reducer(undefined, { type: 'unknown-type' });
     assert.deepEqual(state, defaultState);
+  });
+
+  it('should return the default state', () => {
+    const state = reducer(undefined);
+    assert.deepEqual(defaultState, state);
   });
 
   it('should add todo item', () => {

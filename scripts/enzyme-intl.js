@@ -10,7 +10,7 @@ import { IntlProvider, intlShape } from 'react-intl';
 import { mount, shallow } from 'enzyme';
 
 // You can pass your messages to the IntlProvider. Optional: remove if unneeded.
-import messages from '../client/locales/en-US'; // en-US.json
+import messages from '../app/locales/en-US'; // en-US.json
 
 // Create the IntlProvider to retrieve context for wrapping around.
 const intlProvider = new IntlProvider({ locale: 'en', messages }, {});

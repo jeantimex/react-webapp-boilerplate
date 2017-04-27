@@ -3,7 +3,7 @@ import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const locale = process.env.LOCALE || 'en-US';
-const sourcePath = path.join(__dirname, 'client');
+const sourcePath = path.join(__dirname, 'app');
 const outputPath = path.join(__dirname, 'dist', locale);
 
 export default (env) => {
@@ -68,7 +68,7 @@ export default (env) => {
     devtool: isProd ? 'source-map' : 'inline-source-map',
     context: sourcePath,
     entry: {
-      client: './index.js',
+      app: './index.js',
       vendor: ['react']
     },
     output: {
@@ -115,10 +115,10 @@ export default (env) => {
         sourcePath
       ],
       alias: {
-        actions: path.join(__dirname, 'client', 'actions'),
-        pages: path.join(__dirname, 'client', 'pages'),
-        reducers: path.join(__dirname, 'client', 'reducers'),
-        store: path.join(__dirname, 'client', 'store'),
+        actions: path.join(__dirname, 'app', 'actions'),
+        pages: path.join(__dirname, 'app', 'pages'),
+        reducers: path.join(__dirname, 'app', 'reducers'),
+        store: path.join(__dirname, 'app', 'store'),
         'locale-data': `react-intl/locale-data/${languageCode}`,
         'locale-messages': `./locales/${locale}.json`
       },
@@ -139,7 +139,7 @@ export default (env) => {
     },
 
     devServer: {
-      contentBase: './client',
+      contentBase: './app',
       historyApiFallback: true,
       port: 3000,
       compress: isProd,
