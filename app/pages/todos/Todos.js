@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import noop from 'lodash.noop';
 
 import {
   addTodoItemAction,
@@ -12,7 +13,7 @@ import {
 
 import './todos.scss';
 
-class Todos extends Component {
+export class Todos extends Component {
 
   handleKeyPress = (e) => {
     const { addTodoItem } = this.props;
@@ -97,16 +98,19 @@ class Todos extends Component {
         </div>
         <div>
           <button
+            className="filter-button"
             onClick={() => this.handleFilterTypeChange('all')}
           >
             All
           </button>
           <button
+            className="filter-button"
             onClick={() => this.handleFilterTypeChange('active')}
           >
             Active
           </button>
           <button
+            className="filter-button"
             onClick={() => this.handleFilterTypeChange('completed')}
           >
             Completed
@@ -120,10 +124,10 @@ class Todos extends Component {
 
 Todos.defaultProps = {
   todoItems: [],
-  addTodoItem: () => {},
-  toggleTodoItem: () => {},
-  deleteTodoItem: () => {},
-  setTodoFilterType: () => {},
+  addTodoItem: noop,
+  toggleTodoItem: noop,
+  deleteTodoItem: noop,
+  setTodoFilterType: noop,
   activeItemsCount: 0,
 };
 
@@ -140,7 +144,7 @@ Todos.propTypes = {
   activeItemsCount: PropTypes.number,
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { items, filterType } = state.todo;
   let todoItems = items.toArray();
 
@@ -156,7 +160,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addTodoItem: (text) => {
     dispatch(addTodoItemAction(text));
   },

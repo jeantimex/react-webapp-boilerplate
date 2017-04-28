@@ -9,7 +9,12 @@
     "locale-messages": "<rootDir>/app/locales/en-US.json",
     "\\.(css|scss)$": "identity-obj-proxy"
   },
+  "collectCoverageFrom" : [
+    "app/**/*.js",
+    "!**/index.js"
+  ],
   "coveragePathIgnorePatterns": [
+    "/node_modules/",
     "<rootDir>/scripts"
   ],
   "coverageThreshold": {
