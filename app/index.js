@@ -25,7 +25,7 @@ const history = createHistory();
 addLocaleData(localeData);
 
 ReactDOM.render(
-  <IntlProvider locale={'en'} messages={messages}>
+  <IntlProvider locale={LOCALE} messages={messages}>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>

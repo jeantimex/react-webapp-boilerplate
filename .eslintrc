@@ -21,6 +21,9 @@ env:
   mocha: true
   jest: true
 
+globals:
+  LOCALE: false
+
 rules:
   indent: 2
   max-len: [1, 120]
