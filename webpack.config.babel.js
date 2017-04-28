@@ -28,7 +28,7 @@ export default (env) => {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
-      LOCALE: locale,
+      LOCALE: JSON.stringify(languageCode),
     }),
     extractSass
   ];
