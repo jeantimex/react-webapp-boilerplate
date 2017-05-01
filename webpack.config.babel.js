@@ -134,7 +134,9 @@ export default (env) => {
 
     devServer: {
       contentBase: './app',
+      disableHostCheck: true,
       historyApiFallback: true,
+      host: 'localhost',
       port: 3000,
       compress: isProd,
       inline: !isProd,
