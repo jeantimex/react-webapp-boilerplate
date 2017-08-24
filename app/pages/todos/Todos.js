@@ -6,11 +6,12 @@ import noop from 'lodash.noop';
 
 import {
   addTodoItemAction,
-  toggleTodoItemAction,
   deleteTodoItemAction,
   setTodoFilterTypeAction,
+  toggleTodoItemAction,
 } from 'actions';
 
+import 'todomvc-app-css/index.css';
 import './todos.scss';
 
 export class Todos extends Component {
@@ -49,12 +50,13 @@ export class Todos extends Component {
   render() {
     const {
       todoItems,
+      filterType,
       activeItemsCount,
     } = this.props;
 
     const items = todoItems.map((item) => {
       const className = classNames('todo-item', {
-        completed: item.completed
+        completed: item.completed,
       });
 
       return (
@@ -62,60 +64,73 @@ export class Todos extends Component {
           key={item.id}
           className={className}
         >
-          <div>
+          <div className="view">
             <input
-              type="checkbox"
-              id={item.id}
+              className="toggle"
               checked={item.completed}
+              id={item.id}
               onChange={this.handleChange}
+              type="checkbox"
             />
-            <span>{item.text}</span>
+            <label htmlFor={item.id}>{item.text}</label>
             <button
-              className="close-button"
+              className="destroy"
               onClick={() => this.handleClose(item.id)}
-            >
-              ×
-            </button>
+            />
           </div>
         </li>
       );
     });
 
     return (
-      <div className="viewport">
-        <div>
+      <div className="todoapp">
+        <header className="header">
+          <h1>todos</h1>
           <input
-            type="text"
+            className="new-todo"
             onKeyPress={this.handleKeyPress}
             placeholder="What needs to be done?"
+            type="text"
           />
+        </header>
+
+        <div className="main">
+          <ul className="todo-list">
+            {items}
+          </ul>
         </div>
-        <ul className="todo-list">
-          {items}
-        </ul>
-        <div>
-          { activeItemsCount } items left
-        </div>
-        <div>
-          <button
-            className="filter-button"
-            onClick={() => this.handleFilterTypeChange('all')}
-          >
-            All
-          </button>
-          <button
-            className="filter-button"
-            onClick={() => this.handleFilterTypeChange('active')}
-          >
-            Active
-          </button>
-          <button
-            className="filter-button"
-            onClick={() => this.handleFilterTypeChange('completed')}
-          >
-            Completed
-          </button>
-        </div>
+
+        <footer className="footer">
+          <span className="todo-count">
+            { activeItemsCount } items left
+          </span>
+          <ul className="filters">
+            <li>
+              <a
+                className={filterType === 'all' ? 'selected' : ''}
+                onClick={() => this.handleFilterTypeChange('all')}
+              >
+                All
+              </a>
+            </li>
+            <li>
+              <a
+                className={filterType === 'active' ? 'selected' : ''}
+                onClick={() => this.handleFilterTypeChange('active')}
+              >
+                Active
+              </a>
+            </li>
+            <li>
+              <a
+                className={filterType === 'completed' ? 'selected' : ''}
+                onClick={() => this.handleFilterTypeChange('completed')}
+              >
+                Completed
+              </a>
+            </li>
+          </ul>
+        </footer>
       </div>
     );
   }
@@ -124,6 +139,7 @@ export class Todos extends Component {
 
 Todos.defaultProps = {
   todoItems: [],
+  filterType: 'all',
   addTodoItem: noop,
   toggleTodoItem: noop,
   deleteTodoItem: noop,
@@ -137,6 +153,7 @@ Todos.propTypes = {
     text: PropTypes.string,
     completed: PropTypes.bool,
   })),
+  filterType: PropTypes.oneOf(['all', 'active', 'completed']),
   addTodoItem: PropTypes.func,
   toggleTodoItem: PropTypes.func,
   deleteTodoItem: PropTypes.func,
@@ -156,6 +173,7 @@ export const mapStateToProps = (state) => {
 
   return {
     todoItems,
+    filterType,
     activeItemsCount: items.toArray().filter(item => !item.completed).length,
   };
 };
@@ -177,5 +195,5 @@ export const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Todos);

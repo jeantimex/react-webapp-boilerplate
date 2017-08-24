@@ -89,7 +89,10 @@ export default (env) => {
         },
         {
           test: /\.s?css$/,
-          exclude: /node_modules/,
+          include: [
+            sourcePath,
+            path.resolve('node_modules/todomvc-app-css'),
+          ],
           use: extractSass.extract({
             use: [{
               loader: 'css-loader'
