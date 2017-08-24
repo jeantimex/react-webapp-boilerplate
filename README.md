@@ -25,8 +25,8 @@ Save your time in putting React, Redux, Router, Webpack, Jest and localization t
 **Basic react eco system**<br />
 The scaffolded project will include the latest React, Redux, React Router and React Intl.
 
-**Webpack 2**<br />
-Enjoy the tree shaking feature in Webpack 2.
+**Webpack 3**<br />
+Enjoy the tree shaking feature in Webpack 3.
 
 **Jest**<br />
 Facebook's painless JavaScript test runner, no need to configure Karma Webpack, no need to use Sinon and Babel Rewire.
