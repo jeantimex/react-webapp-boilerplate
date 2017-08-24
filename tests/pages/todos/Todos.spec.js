@@ -15,11 +15,7 @@ import {
   deleteTodoItemAction,
   setTodoFilterTypeAction,
 } from 'actions';
-import {
-  Todos,
-  mapStateToProps,
-  mapDispatchToProps,
-} from 'pages/todos/Todos';
+import { Todos, mapStateToProps, mapDispatchToProps } from 'pages/todos/Todos';
 
 describe('Todos Page', () => {
   let wrapper;
@@ -48,25 +44,49 @@ describe('Todos Page', () => {
   });
 
   it('should render the todos page', () => {
-    assert.ok(wrapper.hasClass('viewport'));
+    assert.ok(wrapper.hasClass('todoapp'));
+  });
+
+  it('should highlight the all button', () => {
+    wrapper.setProps({ filterType: 'all' });
+    const button = wrapper.find('.filters').find('a').at(0);
+    assert.ok(button.hasClass('selected'));
+  });
+
+  it('should not highlight the all button', () => {
+    wrapper.setProps({ filterType: 'active' });
+    const button = wrapper.find('.filters').find('a').at(0);
+    assert.notOk(button.hasClass('selected'));
+  });
+
+  it('should highlight the active button', () => {
+    wrapper.setProps({ filterType: 'active' });
+    const button = wrapper.find('.filters').find('a').at(1);
+    assert.ok(button.hasClass('selected'));
+  });
+
+  it('should not highlight the active button', () => {
+    wrapper.setProps({ filterType: 'completed' });
+    const button = wrapper.find('.filters').find('a').at(1);
+    assert.notOk(button.hasClass('selected'));
   });
 
   it('should trigger setTodoFilterType with all', () => {
-    const button = wrapper.find('.filter-button').at(0);
+    const button = wrapper.find('.filters').find('a').at(0);
     button.simulate('click');
     assert.lengthOf(setTodoFilterType.mock.calls, 1);
     assert.equal('all', setTodoFilterType.mock.calls[0][0]);
   });
 
   it('should trigger setTodoFilterType with active', () => {
-    const button = wrapper.find('.filter-button').at(1);
+    const button = wrapper.find('.filters').find('a').at(1);
     button.simulate('click');
     assert.lengthOf(setTodoFilterType.mock.calls, 1);
     assert.equal('active', setTodoFilterType.mock.calls[0][0]);
   });
 
   it('should trigger setTodoFilterType with completed', () => {
-    const button = wrapper.find('.filter-button').at(2);
+    const button = wrapper.find('.filters').find('a').at(2);
     button.simulate('click');
     assert.lengthOf(setTodoFilterType.mock.calls, 1);
     assert.equal('completed', setTodoFilterType.mock.calls[0][0]);
@@ -75,7 +95,7 @@ describe('Todos Page', () => {
   it('should render 2 todo items', () => {
     const todoItems = [
       { id: '1', text: 'item 1', completed: false },
-      { id: '2', text: 'item 2', completed: true }
+      { id: '2', text: 'item 2', completed: true },
     ];
     wrapper.setProps({ todoItems });
     wrapper.update();
@@ -87,12 +107,12 @@ describe('Todos Page', () => {
     const handleClose = jest.fn();
     const todoItems = [
       { id: '1', text: 'item 1', completed: false },
-      { id: '2', text: 'item 2', completed: true }
+      { id: '2', text: 'item 2', completed: true },
     ];
     wrapper.instance().handleClose = handleClose;
     wrapper.setProps({ todoItems });
     wrapper.update();
-    const closeButton = wrapper.find('.todo-item').at(0).find('.close-button');
+    const closeButton = wrapper.find('.todo-item').at(0).find('.destroy');
     closeButton.simulate('click');
     assert.lengthOf(handleClose.mock.calls, 1);
     assert.equal('1', handleClose.mock.calls[0][0]);
@@ -106,8 +126,8 @@ describe('Todos Page', () => {
   it('should call toggleTodoItem', () => {
     wrapper.instance().handleChange({
       target: {
-        id: '1'
-      }
+        id: '1',
+      },
     });
     assert.equal('1', toggleTodoItem.mock.calls[0][0]);
   });
@@ -116,8 +136,8 @@ describe('Todos Page', () => {
     wrapper.instance().handleKeyPress({
       key: 'Enter',
       target: {
-        value: 'release product'
-      }
+        value: 'release product',
+      },
     });
     assert.equal('release product', addTodoItem.mock.calls[0][0]);
   });
@@ -126,8 +146,8 @@ describe('Todos Page', () => {
     wrapper.instance().handleKeyPress({
       key: 'Esc',
       target: {
-        value: 'release product'
-      }
+        value: 'release product',
+      },
     });
     assert.lengthOf(addTodoItem.mock.calls, 0);
   });
@@ -155,8 +175,9 @@ describe('Todos Page', () => {
     const expected = {
       todoItems: [
         { id: '1', text: 'item 1', completed: false },
-        { id: '2', text: 'item 2', completed: true }
+        { id: '2', text: 'item 2', completed: true },
       ],
+      filterType: 'all',
       activeItemsCount: 1,
     };
     assert.deepEqual(expected, props);
@@ -170,9 +191,8 @@ describe('Todos Page', () => {
     const state = { todo: { items, filterType } };
     const props = mapStateToProps(state);
     const expected = {
-      todoItems: [
-        { id: '1', text: 'item 1', completed: false }
-      ],
+      todoItems: [{ id: '1', text: 'item 1', completed: false }],
+      filterType: 'active',
       activeItemsCount: 1,
     };
     assert.deepEqual(expected, props);
@@ -186,9 +206,8 @@ describe('Todos Page', () => {
     const state = { todo: { items, filterType } };
     const props = mapStateToProps(state);
     const expected = {
-      todoItems: [
-        { id: '2', text: 'item 2', completed: true }
-      ],
+      todoItems: [{ id: '2', text: 'item 2', completed: true }],
+      filterType: 'completed',
       activeItemsCount: 1,
     };
     assert.deepEqual(expected, props);

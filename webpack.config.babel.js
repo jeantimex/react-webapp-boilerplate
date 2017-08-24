@@ -6,7 +6,7 @@ const locale = process.env.LOCALE || 'en-US';
 const sourcePath = path.join(__dirname, 'app');
 const outputPath = path.join(__dirname, 'dist', locale);
 
-export default (env) => {
+export default env => {
   const nodeEnv = env && env.prod ? 'production' : 'development';
   const isProd = nodeEnv === 'production';
   const languageCode = locale.toLowerCase().split(/[_-]+/)[0];
@@ -30,7 +30,7 @@ export default (env) => {
     new webpack.DefinePlugin({
       LOCALE: JSON.stringify(languageCode),
     }),
-    extractSass
+    extractSass,
   ];
 
   if (isProd) {
@@ -59,9 +59,7 @@ export default (env) => {
       })
     );
   } else {
-    plugins.push(
-      new webpack.HotModuleReplacementPlugin()
-    );
+    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   return {
@@ -69,7 +67,7 @@ export default (env) => {
     context: sourcePath,
     entry: {
       app: './index.js',
-      vendor: ['react']
+      vendor: ['react'],
     },
     output: {
       path: outputPath,
@@ -83,47 +81,48 @@ export default (env) => {
           use: {
             loader: 'file-loader',
             query: {
-              name: '[name].[ext]'
+              name: '[name].[ext]',
             },
           },
         },
         {
           test: /\.s?css$/,
-          include: [
-            sourcePath,
-            path.resolve('node_modules/todomvc-app-css'),
-          ],
+          include: [sourcePath, path.resolve('node_modules/todomvc-app-css')],
           use: extractSass.extract({
-            use: [{
-              loader: 'css-loader'
-            }, {
-              loader: 'sass-loader'
-            }],
-            fallback: 'style-loader'
-          })
+            use: [
+              {
+                loader: 'css-loader',
+              },
+              {
+                loader: 'sass-loader',
+              },
+            ],
+            fallback: 'style-loader',
+          }),
         },
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: [
-            'babel-loader'
-          ],
+          use: ['babel-loader'],
         },
       ],
     },
     resolve: {
-      extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
-      modules: [
-        path.resolve(__dirname, 'node_modules'),
-        sourcePath
+      extensions: [
+        '.webpack-loader.js',
+        '.web-loader.js',
+        '.loader.js',
+        '.js',
+        '.jsx',
       ],
+      modules: [path.resolve(__dirname, 'node_modules'), sourcePath],
       alias: {
         actions: path.join(__dirname, 'app', 'actions'),
         pages: path.join(__dirname, 'app', 'pages'),
         reducers: path.join(__dirname, 'app', 'reducers'),
         store: path.join(__dirname, 'app', 'store'),
         'locale-data': `react-intl/locale-data/${languageCode}`,
-        'locale-messages': `./locales/${locale}.json`
+        'locale-messages': `./locales/${locale}.json`,
       },
     },
 
@@ -155,6 +154,6 @@ export default (env) => {
         version: false,
         warnings: true,
       },
-    }
+    },
   };
 };
