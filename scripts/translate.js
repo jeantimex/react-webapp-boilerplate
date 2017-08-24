@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import rimraf from 'rimraf';
-import { sync as globSync } from 'glob';
-import { sync as mkdirpSync } from 'mkdirp';
+const fs = require('fs');
+const rimraf = require('rimraf');
+const globSync = require('glob').sync;
+const mkdirpSync = require('mkdirp').sync;
 
 const messagesPattern = './.tmp/messages/**/*.json';
 const outputDir = './app/locales/';

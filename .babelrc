@@ -1,15 +1,29 @@
 {
   "plugins": [
     "transform-class-properties",
-    "transform-runtime",
+    ["transform-runtime", {
+      "polyfill": false
+    }],
     ["react-intl", {
       "messagesDir": "./.tmp/messages/"
     }]
   ],
   "presets": [
-    "latest",
-    ["es2015", {"modules": false}],
+    ["latest", {
+      "es2015": {
+        "modules": false
+      }
+    }],
     "react",
     "stage-0"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "latest",
+        "react",
+        "stage-0"
+      ]
+    }
+  }
 }
