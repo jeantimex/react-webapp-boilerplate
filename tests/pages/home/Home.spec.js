@@ -6,9 +6,7 @@ import Home from 'pages/home/Home';
 
 describe('Home Page', () => {
   it('should render the home page', () => {
-    const wrapper = shallowWithIntl(
-      <Home />
-    );
+    const wrapper = shallowWithIntl(<Home />);
     assert.ok(wrapper.hasClass('viewport'));
     assert.ok(wrapper.hasClass('home'));
     assert.equal(wrapper.state('name'), 'Su');

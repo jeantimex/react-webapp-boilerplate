@@ -16,8 +16,8 @@ describe('todo actions', () => {
     const expected = {
       type: ADD_TODO_ITEM,
       payload: {
-        text: 'release product'
-      }
+        text: 'release product',
+      },
     };
     assert.deepEqual(expected, action);
   });
@@ -27,8 +27,8 @@ describe('todo actions', () => {
     const expected = {
       type: TOGGLE_TODO_ITEM,
       payload: {
-        id: '123-456'
-      }
+        id: '123-456',
+      },
     };
     assert.deepEqual(expected, action);
   });
@@ -38,8 +38,8 @@ describe('todo actions', () => {
     const expected = {
       type: DELETE_TODO_ITEM,
       payload: {
-        id: '123-456'
-      }
+        id: '123-456',
+      },
     };
     assert.deepEqual(expected, action);
   });
@@ -49,8 +49,8 @@ describe('todo actions', () => {
     const expected = {
       type: SET_TODO_FILTER_TYPE,
       payload: {
-        filterType: 'all'
-      }
+        filterType: 'all',
+      },
     };
     assert.deepEqual(expected, action);
   });

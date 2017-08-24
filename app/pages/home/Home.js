@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl';
 import './styles.scss';
 
 class Home extends Component {
-
   constructor(props) {
     super(props);
 
@@ -32,12 +31,14 @@ class Home extends Component {
             one {message}
             other {messages}
           }`}
-          values={{ name: <b>{name}</b>, unreadCount }}
+          values={{
+            name,
+            unreadCount,
+          }}
         />
       </div>
     );
   }
-
 }
 
 export default Home;

@@ -21,15 +21,17 @@ describe('todo reducer', () => {
     const state = reducer(undefined, {
       type: 'ADD_TODO_ITEM',
       payload: {
-        text: 'release product'
-      }
+        text: 'release product',
+      },
     });
     const { items } = state;
-    const expected = [{
-      id: '123-456',
-      text: 'release product',
-      completed: false,
-    }];
+    const expected = [
+      {
+        id: '123-456',
+        text: 'release product',
+        completed: false,
+      },
+    ];
     assert.deepEqual(expected, items.toArray());
   });
 
@@ -37,21 +39,23 @@ describe('todo reducer', () => {
     let state = reducer(undefined, {
       type: 'ADD_TODO_ITEM',
       payload: {
-        text: 'release product'
-      }
+        text: 'release product',
+      },
     });
     state = reducer(state, {
       type: 'TOGGLE_TODO_ITEM',
       payload: {
-        id: '123-456'
-      }
+        id: '123-456',
+      },
     });
     const { items } = state;
-    const expected = [{
-      id: '123-456',
-      text: 'release product',
-      completed: true,
-    }];
+    const expected = [
+      {
+        id: '123-456',
+        text: 'release product',
+        completed: true,
+      },
+    ];
     assert.deepEqual(expected, items.toArray());
   });
 
@@ -59,14 +63,14 @@ describe('todo reducer', () => {
     let state = reducer(undefined, {
       type: 'ADD_TODO_ITEM',
       payload: {
-        text: 'release product'
-      }
+        text: 'release product',
+      },
     });
     state = reducer(state, {
       type: 'DELETE_TODO_ITEM',
       payload: {
-        id: '123-456'
-      }
+        id: '123-456',
+      },
     });
     const { items } = state;
     const expected = [];
@@ -77,8 +81,8 @@ describe('todo reducer', () => {
     const state = reducer(undefined, {
       type: 'SET_TODO_FILTER_TYPE',
       payload: {
-        filterType: 'all'
-      }
+        filterType: 'all',
+      },
     });
     const { filterType } = state;
     assert.deepEqual('all', filterType);

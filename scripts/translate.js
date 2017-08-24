@@ -27,6 +27,9 @@ const defaultMessages = globSync(messagesPattern)
 
 mkdirpSync(outputDir);
 
-fs.writeFileSync(`${outputDir}en-US.json`, JSON.stringify(defaultMessages, null, 2));
+fs.writeFileSync(
+  `${outputDir}en-US.json`,
+  JSON.stringify(defaultMessages, null, 2)
+);
 
 rimraf('./.tmp/messages', () => {});

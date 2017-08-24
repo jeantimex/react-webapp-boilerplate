@@ -10,25 +10,29 @@ const extname = path.extname;
 const localesPath = join(__dirname, '..', 'app', 'locales');
 
 const languages = readdirSync(localesPath)
-    .filter(fileName => extname(fileName) === '.json')
-    .map(fileName => fileName.slice(0, fileName.indexOf('.')));
+  .filter(fileName => extname(fileName) === '.json')
+  .map(fileName => fileName.slice(0, fileName.indexOf('.')));
 
 const queue = async.queue((language, callback) => {
-  exec('npm run build', {
-    cwd: join(__dirname, '..'),
-    env: Object.assign(process.env, {
-      LOCALE: language,
-    }),
-  }, (error) => {
-    if (!error) {
-      console.log('Building', language, 'succeed!');
-      callback(null, true);
-    } else {
-      console.log('Building', language, 'failed!');
-      callback(null, false);
-      process.exit(1);
+  exec(
+    'npm run build',
+    {
+      cwd: join(__dirname, '..'),
+      env: Object.assign(process.env, {
+        LOCALE: language,
+      }),
+    },
+    error => {
+      if (!error) {
+        console.log('Building', language, 'succeed!');
+        callback(null, true);
+      } else {
+        console.log('Building', language, 'failed!');
+        callback(null, false);
+        process.exit(1);
+      }
     }
-  });
+  );
 }, 2);
 
 queue.push(languages);
