@@ -18,6 +18,7 @@ module.exports = env => {
   });
 
   const plugins = [
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
