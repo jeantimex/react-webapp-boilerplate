@@ -1,19 +1,11 @@
-.todo-item {
-  list-style: none;
+body {
+  margin: 0 auto !important;
+}
 
-  &.completed {
-    span {
-      text-decoration: line-through;
+.todoapp {
+  .filters {
+    a {
+      cursor: pointer;
     }
-  }
-
-  &:hover {
-    .close-button {
-      display: inline-block;
-    }
-  }
-
-  .close-button {
-    display: none;
   }
 }
