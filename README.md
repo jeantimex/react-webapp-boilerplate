@@ -36,10 +36,10 @@ Facebook's painless JavaScript test runner, no need to configure Karma Webpack, 
 **Get up and running**<br />
 1. Clone this repo using `git clone https://github.com/jeantimex/react-webapp-boilerplate.git`
 2. Run `yarn` or `npm install` to install the dependencies
-3. Run `yarn dev` or `npm run dev` to see the example app at `http://localhost:3000`
+3. Run `yarn run dev` or `npm run dev` to see the example app at `http://localhost:3000`
 
 **Unit testing**<br />
-Unit testing is powered by **Jest**, run `yarn test` or `npm test` and the results will be printed:
+Unit testing is powered by **Jest**, run `yarn run test` or `npm run test` and the results will be printed:
 ```
  PASS  tests/pages/todos/Todos.spec.js
  PASS  tests/pages/about/About.spec.js
