@@ -43,8 +43,6 @@ File             |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
 All files        |      100 |      100 |      100 |      100 |                |
  pages/about     |      100 |      100 |      100 |      100 |                |
   About.js       |      100 |      100 |      100 |      100 |                |
- pages/home      |      100 |      100 |      100 |      100 |                |
-  Home.js        |      100 |      100 |      100 |      100 |                |
  pages/todos     |      100 |      100 |      100 |      100 |                |
   Todos.js       |      100 |      100 |      100 |      100 |                |
  reducers        |      100 |      100 |      100 |      100 |                |
