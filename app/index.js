@@ -14,7 +14,6 @@ import messages from 'locale-messages';
 
 import store from 'store';
 
-import Home from 'pages/home/Home';
 import Todos from 'pages/todos/Todos';
 import About from 'pages/about/About';
 
@@ -29,8 +28,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/todos" component={Todos} />
+          <Route exact path="/" component={Todos} />
           <Route exact path="/about" component={About} />
         </div>
       </ConnectedRouter>
