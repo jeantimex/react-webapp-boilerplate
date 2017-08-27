@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/jeantimex/react-webapp-boilerplate.svg?branch=master)](https://travis-ci.org/jeantimex/react-webapp-boilerplate)
 [![Coverage Status](https://coveralls.io/repos/github/jeantimex/react-webapp-boilerplate/badge.svg)](https://coveralls.io/github/jeantimex/react-webapp-boilerplate)
 
-![rocket](docs/images/rocket.png)<br />
+![rocket](docs/images/cover.png)<br />
 
 ## About
 
