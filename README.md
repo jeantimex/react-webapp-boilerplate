@@ -7,16 +7,6 @@
 
 ![rocket](docs/images/cover.png)<br />
 
-## About
-
-Being a frontend engineer, you probably know many tech names like React, Webpack, Karma, Mocha, Jest etc, it's your responsibility to understand how they work together.
-
-If you have ever tried to scaffold a React project for production, you have to learn quite a lot of new frontend technologies, and sometimes you might get confused why this plugin is used, is it necessary? 
-
-I've spent a lot of time as you do, and I would like to document how to scaffold a React project with the latest technologies and show you how to build something ready for production.
-
-You can use this boilerplate to scaffold your React project, it has a Todo list app that shows your how to use React with Redux and Ract Router, it supports localization as well, or feel free to use this project as a reference.
-
 ## Features
 
 **Quick scaffolding**<br />
@@ -59,24 +49,13 @@ All files        |      100 |      100 |      100 |      100 |                |
   TodoReducer.js |      100 |      100 |      100 |      100 |                |
 -----------------|----------|----------|----------|----------|----------------|
 ```
-See [Unit Testing](docs/jest.md) for more details.
 
 **Localization**<br />
 This demo supports two locales: `en-US` and `zh-CN`, you can add other locales for your application. By default, `en-US` is used, to choose a different locale for development and final build, simply specify the `LOCALE` node environment to your locale, for example:
 
-- `LOCALE=zh-CN yarn dev` or `LOCALE=zh-CN npm run dev`: Running example app in Chinese language.
-- `LOCALE=zh-CN yarn build` or `LOCALE=zh-CN npm run build`: Build the dist for Chinese language.
-- `yarn release` or `npm run release`: Bundle the assets for all supported locales that are defined in `app/locales` folder.
-
-## Documents
-
-- [Babel](docs/babel.md)
-- [React](docs/react.md)
-  - [Redux](docs/redux.md)
-  - [Router](docs/react-router.md)
-  - [Localization](docs/react-intl.md)
-- [Webpack](docs/webpack.md)
-- [Unit Testing](docs/jest.md)
+- `LOCALE=zh-CN yarn run dev` or `LOCALE=zh-CN npm run dev`: Running example app in Chinese language.
+- `LOCALE=zh-CN yarn run build` or `LOCALE=zh-CN npm run build`: Build the dist for Chinese language.
+- `yarn run release` or `npm run release`: Bundle the assets for all supported locales that are defined in `app/locales` folder.
 
 ## License
 
