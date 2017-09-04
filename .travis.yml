@@ -26,7 +26,7 @@ install:
   - yarn
 
 script:
-  - yarn test
+  - yarn run test
 
 after_script:
   # send code-coverage report to coveralls

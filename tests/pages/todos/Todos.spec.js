@@ -49,44 +49,65 @@ describe('Todos Page', () => {
 
   it('should highlight the all button', () => {
     wrapper.setProps({ filterType: 'all' });
-    const button = wrapper.find('.filters').find('a').at(0);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(0);
     assert.ok(button.hasClass('selected'));
   });
 
   it('should not highlight the all button', () => {
     wrapper.setProps({ filterType: 'active' });
-    const button = wrapper.find('.filters').find('a').at(0);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(0);
     assert.notOk(button.hasClass('selected'));
   });
 
   it('should highlight the active button', () => {
     wrapper.setProps({ filterType: 'active' });
-    const button = wrapper.find('.filters').find('a').at(1);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(1);
     assert.ok(button.hasClass('selected'));
   });
 
   it('should not highlight the active button', () => {
     wrapper.setProps({ filterType: 'completed' });
-    const button = wrapper.find('.filters').find('a').at(1);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(1);
     assert.notOk(button.hasClass('selected'));
   });
 
   it('should trigger setTodoFilterType with all', () => {
-    const button = wrapper.find('.filters').find('a').at(0);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(0);
     button.simulate('click');
     assert.lengthOf(setTodoFilterType.mock.calls, 1);
     assert.equal('all', setTodoFilterType.mock.calls[0][0]);
   });
 
   it('should trigger setTodoFilterType with active', () => {
-    const button = wrapper.find('.filters').find('a').at(1);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(1);
     button.simulate('click');
     assert.lengthOf(setTodoFilterType.mock.calls, 1);
     assert.equal('active', setTodoFilterType.mock.calls[0][0]);
   });
 
   it('should trigger setTodoFilterType with completed', () => {
-    const button = wrapper.find('.filters').find('a').at(2);
+    const button = wrapper
+      .find('.filters')
+      .find('a')
+      .at(2);
     button.simulate('click');
     assert.lengthOf(setTodoFilterType.mock.calls, 1);
     assert.equal('completed', setTodoFilterType.mock.calls[0][0]);
@@ -112,7 +133,10 @@ describe('Todos Page', () => {
     wrapper.instance().handleClose = handleClose;
     wrapper.setProps({ todoItems });
     wrapper.update();
-    const closeButton = wrapper.find('.todo-item').at(0).find('.destroy');
+    const closeButton = wrapper
+      .find('.todo-item')
+      .at(0)
+      .find('.destroy');
     closeButton.simulate('click');
     assert.lengthOf(handleClose.mock.calls, 1);
     assert.equal('1', handleClose.mock.calls[0][0]);

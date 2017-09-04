@@ -64,9 +64,7 @@ export class Todos extends Component {
               onChange={this.handleChange}
               type="checkbox"
             />
-            <label htmlFor={item.id}>
-              {item.text}
-            </label>
+            <label htmlFor={item.id}>{item.text}</label>
             <button
               className="destroy"
               onClick={() => this.handleClose(item.id)}
@@ -89,15 +87,11 @@ export class Todos extends Component {
         </header>
 
         <div className="main">
-          <ul className="todo-list">
-            {items}
-          </ul>
+          <ul className="todo-list">{items}</ul>
         </div>
 
         <footer className="footer">
-          <span className="todo-count">
-            {activeItemsCount} items left
-          </span>
+          <span className="todo-count">{activeItemsCount} items left</span>
           <ul className="filters">
             <li>
               <a
