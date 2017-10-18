@@ -4,6 +4,7 @@
 [![devDependencies Status](https://david-dm.org/jeantimex/react-webapp-boilerplate/dev-status.svg)](https://david-dm.org/jeantimex/react-webapp-boilerplate?type=dev)
 [![Build Status](https://travis-ci.org/jeantimex/react-webapp-boilerplate.svg?branch=master)](https://travis-ci.org/jeantimex/react-webapp-boilerplate)
 [![Coverage Status](https://coveralls.io/repos/github/jeantimex/react-webapp-boilerplate/badge.svg)](https://coveralls.io/github/jeantimex/react-webapp-boilerplate)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BFXQGY77CV3T2)
 
 ![rocket](docs/images/cover.png)<br />
 
